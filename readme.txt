@@ -1,10 +1,9 @@
 === Easy YouTube Gallery ===
 Contributors: urkekg, techwebux
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=Q6Q762MQ97XJ6
-Tags: youtube, channel, gallery, single, youtube player, iframe, html5, custom, video, thumbnail, embed, responsive
+Tags: youtube, video, gallery, thumbnail, lightbox
 Requires at least: 3.9.0
-Tested up to: 4.7.4
-Stable tag: 1.0.4
+Tested up to: 6.7.1
+Stable tag: 1.0.5
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -23,7 +22,7 @@ For automated latest or random videos collected from YouTube channel, favourites
 * Custom number of columns to distribute thumbnails to (min 1, max 8)
 * Custom set video titles as shortcode content (separate by newline or pipe)
 * Responsive thumbnails
-* Autoplay with [Magnific PopUp](http://dimsemenov.com/plugins/magnific-popup/) lightbox
+* Autoplay with [Magnific PopUp](https://dimsemenov.com/plugins/magnific-popup/) lightbox
 * Well marked with classes
 
 = Classes =
@@ -119,6 +118,10 @@ You can use custom style with following selector and a rule:
 Just set preferred popup max width in pixels.
 
 == Upgrade Notice ==
+
+= 1.0.5 =
+Resolved XSS vulnerability
+
 = 1.0.4 =
 Feature enhancements and bugfixes
 
@@ -136,7 +139,14 @@ Initial release
 
 == ChangeLog ==
 
+= 1.0.5 (2025-01-15) =
+
+* Test on WordPress 6.7.1 and PHP 8.3.13
+* Refactor code
+* Fixed XSS vulneability reported on patchstack by muhammad yudha researcher
+
 = 1.0.4 (2017-01-20) =
+
 * (2017-01-20) Fix: Wall mode TinyMCE value not respected
 * (2016-03-24) Add: Support for custom video titles set as shortcode content
 * Fix: Add missing clearfix
@@ -145,18 +155,22 @@ Initial release
 * Change: Sassify plugin style files.
 
 = 1.0.3 (2015-10-04) =
+
 * Add: Support for YouTube features Ehnanced Privacy and PlaysInline
 * Enhance: Use minified version of CSS and JS
 * Cleanup: Make code compliant to WordPress Core coding standard
 
 = 1.0.2 (2015-06-22) =
+
 * Update: MagnificPopupAU library to latest version (sync to YouTube Channel)
 * Update: Support to init lightbox on AJAX content loading
 
 = 1.0.1 (2015-05-27) =
+
 * Add: TinyMCE button to easy compose shortcode
 
 = 1.0.0 (2015-05-26) =
+
 * Initial plugin release
 
 == Screenshots ==
@@ -166,5 +180,6 @@ Initial release
 
 == TODO ==
 
+* Replace MagnificPopUp with newer library
 * VisualComposer block
-* Inline player instead opening in lightbox
+* Inline player instead of opening in lightbox
