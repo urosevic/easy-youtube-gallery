@@ -117,6 +117,10 @@ You can use custom style with following selector and a rule:
 
 Just set preferred popup max width in pixels.
 
+= How can I report security bugs? =
+
+You can report security bugs through the Patchstack Vulnerability Disclosure Program. The Patchstack team help validate, triage and handle any security vulnerabilities. [Report a security vulnerability.](https://patchstack.com/database/vdp/easy-youtube-gallery)
+
 == Upgrade Notice ==
 
 = 1.0.5 =
