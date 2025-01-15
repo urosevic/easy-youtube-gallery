@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="84"
+   height="59"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   viewBox="0 0 84 59.000001"
+   sodipodi:docname="play.svg"
+   inkscape:export-filename="c:\www\ytc3\wp-content\plugins\easy-youtube-gallery\assets\img\play.png"
+   inkscape:export-xdpi="90"
+   inkscape:export-ydpi="90">
+  <title
+     id="title3387">Play Now</title>
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="8.9322034"
+     inkscape:cx="25.486717"
+     inkscape:cy="7.1091082"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="706"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Play Now</dc:title>
+        <dc:date>2015-05-26</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Aleksandar Urosevic</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by-nc-sa/3.0/" />
+        <dc:description>Play button for WordPress plugin Easy YouTube Gallery</dc:description>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by-nc-sa/3.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:prohibits
+           rdf:resource="http://creativecommons.org/ns#CommercialUse" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-993.3622)">
+    <g
+       id="g4279">
+      <path
+         style="fill:#1f1f1f;fill-opacity:1"
+         d="m 84,1019.695 0,6.3339 c 0,2.8258 -0.149733,5.9518 -0.449198,9.3761 -0.132763,1.6957 -0.266524,3.1091 -0.399287,4.2392 l -0.149732,0.9476 c -0.166703,0.7651 -0.366346,1.5132 -0.598931,2.2443 -0.665811,2.361 -1.530267,4.0726 -2.595365,5.1369 -1.364564,1.3965 -2.961712,2.377 -4.791444,2.9426 -0.631872,0.1994 -1.313654,0.3321 -2.046346,0.399 -0.765633,0.1 -1.297683,0.1666 -1.597148,0.1994 -4.891266,0.3662 -11.262888,0.6155 -19.115865,0.7482 -2.429661,0.034 -4.874295,0.067 -7.336898,0.1 l -2.944741,0 c -3.626525,-0.033 -7.536542,-0.083 -11.729056,-0.1496 -8.417968,-0.1666 -14.024955,-0.382 -16.819964,-0.6484 -0.06688,-0.033 -0.665811,-0.1167 -1.796791,-0.2493 -0.898396,-0.1327 -1.68,-0.2823 -2.345812,-0.4489 -2.062317,-0.5317 -3.776256,-1.4962 -5.14082,-2.8927 -1.031158,-1.0643 -1.896613,-2.7759 -2.595365,-5.1369 -0.232585,-0.7311 -0.416257,-1.4792 -0.54902,-2.2443 l -0.199643,-0.9476 C 0.665811,1038.5144 0.53205,1037.101 0.399287,1035.4053 0.132763,1031.981 0,1028.855 0,1026.0292 l 0,-6.3339 c 0,-2.8259 0.132763,-5.9349 0.399287,-9.3264 l 0.399287,-4.2392 c 0.166702,-0.9635 0.416257,-2.0447 0.748663,-3.2417 0.698752,-2.327 1.564207,-4.0228 2.595365,-5.0871 1.364564,-1.4303 2.961712,-2.4278 4.791444,-2.9923 0.631872,-0.1667 1.330624,-0.2993 2.096257,-0.399 0.399287,-0.066 0.915365,-0.1327 1.547237,-0.1995 4.891266,-0.3322 11.262888,-0.5656 19.115865,-0.6982 3.893048,-0.1 7.319928,-0.1497 10.28164,-0.1497 l 2.944741,0.05 c 2.462603,0 4.924207,0.034 7.386809,0.1 7.819038,0.1326 14.174688,0.366 19.065954,0.6982 0.299465,0.033 0.831515,0.1 1.597148,0.1995 0.731693,0.1 1.414474,0.2323 2.046346,0.399 1.829732,0.5645 3.427879,1.562 4.791444,2.9923 1.064099,1.0633 1.929554,2.7601 2.595365,5.0871 0.366346,1.197 0.6159,2.2782 0.748663,3.2417 l 0.399287,4.2392 C 83.850267,1013.7607 84,1016.8697 84,1019.6956 Z"
+         id="path4284" />
+      <path
+         style="fill:#ffffff;fill-opacity:1"
+         d="m 33.240642,1034.6569 22.659536,-11.77 -22.659536,-11.82 0,23.59 z"
+         id="path4276" />
+    </g>
+    <g
+       id="g4271"
+       transform="translate(0,59)">
+      <path
+         id="path4273"
+         d="m 84,1019.695 0,6.3339 c 0,2.8258 -0.149733,5.9518 -0.449198,9.3761 -0.132763,1.6957 -0.266524,3.1091 -0.399287,4.2392 l -0.149732,0.9476 c -0.166703,0.7651 -0.366346,1.5132 -0.598931,2.2443 -0.665811,2.361 -1.530267,4.0726 -2.595365,5.1369 -1.364564,1.3965 -2.961712,2.377 -4.791444,2.9426 -0.631872,0.1994 -1.313654,0.3321 -2.046346,0.399 -0.765633,0.1 -1.297683,0.1666 -1.597148,0.1994 -4.891266,0.3662 -11.262888,0.6155 -19.115865,0.7482 -2.429661,0.034 -4.874295,0.067 -7.336898,0.1 l -2.944741,0 c -3.626525,-0.033 -7.536542,-0.083 -11.729056,-0.1496 -8.417968,-0.1666 -14.024955,-0.382 -16.819964,-0.6484 -0.06688,-0.033 -0.665811,-0.1167 -1.796791,-0.2493 -0.898396,-0.1327 -1.68,-0.2823 -2.345812,-0.4489 -2.062317,-0.5317 -3.776256,-1.4962 -5.14082,-2.8927 -1.031158,-1.0643 -1.896613,-2.7759 -2.595365,-5.1369 -0.232585,-0.7311 -0.416257,-1.4792 -0.54902,-2.2443 l -0.199643,-0.9476 C 0.665811,1038.5144 0.53205,1037.101 0.399287,1035.4053 0.132763,1031.981 0,1028.855 0,1026.0292 l 0,-6.3339 c 0,-2.8259 0.132763,-5.9349 0.399287,-9.3264 l 0.399287,-4.2392 c 0.166702,-0.9635 0.416257,-2.0447 0.748663,-3.2417 0.698752,-2.327 1.564207,-4.0228 2.595365,-5.0871 1.364564,-1.4303 2.961712,-2.4278 4.791444,-2.9923 0.631872,-0.1667 1.330624,-0.2993 2.096257,-0.399 0.399287,-0.066 0.915365,-0.1327 1.547237,-0.1995 4.891266,-0.3322 11.262888,-0.5656 19.115865,-0.6982 3.893048,-0.1 7.319928,-0.1497 10.28164,-0.1497 l 2.944741,0.05 c 2.462603,0 4.924207,0.034 7.386809,0.1 7.819038,0.1326 14.174688,0.366 19.065954,0.6982 0.299465,0.033 0.831515,0.1 1.597148,0.1995 0.731693,0.1 1.414474,0.2323 2.046346,0.399 1.829732,0.5645 3.427879,1.562 4.791444,2.9923 1.064099,1.0633 1.929554,2.7601 2.595365,5.0871 0.366346,1.197 0.6159,2.2782 0.748663,3.2417 l 0.399287,4.2392 C 83.850267,1013.7607 84,1016.8697 84,1019.6956 Z"
+         style="fill:#cc181e;fill-opacity:1"
+         inkscape:connector-curvature="0" />
+      <path
+         id="path4275"
+         d="m 33.240642,1034.6569 22.659536,-11.77 -22.659536,-11.82 0,23.59 z"
+         style="fill:#ffffff;fill-opacity:1"
+         inkscape:connector-curvature="0" />
+    </g>
+  </g>
+</svg>
