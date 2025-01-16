@@ -13,7 +13,7 @@ Quick and easy make gallery for custom set of YouTube videos provided in shortco
 
 Use this plugin when you wish to quick insert gallery grid composed from custom selected YouTube videos.
 
-For automated latest or random videos collected from YouTube channel, favourites, liked videos or playlist check out [YouTube Channel](https://wordpress.org/plugins/youtube-channel/)
+For automated latest or random videos collected from YouTube channel, favourites, liked videos or playlist check out [My YouTube Channel](https://wordpress.org/plugins/youtube-channel/)
 
 = Features =
 
@@ -58,6 +58,7 @@ Video 3
 Fourth Video
 YouTube 5
 Sixth YouTube
+Video No. 7
 Player #8
 9th item
 [/easy_youtube_gallery]`
@@ -147,7 +148,7 @@ Initial release
 
 * Test on WordPress 6.7.1 and PHP 8.3.13
 * Test on WordPress 3.9.40, Twenty Twelve 1.4 and PHP 5.4.45
-* Fixed XSS vulneability reported on patchstack by muhammad yudha researcher
+* Fixed XSS vulnerability reported on patchstack by muhammad yudha researcher
 * Refactor code
 * Optimize play image
 * Removed deprecated embed parameter modestbranding https://developers.google.com/youtube/player_parameters#release_notes_08_15_2023
