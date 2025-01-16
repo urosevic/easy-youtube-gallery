@@ -451,7 +451,7 @@ class Main {
 	 * @return array          Set of TinyMCE plugins with EYTG addition
 	 */
 	public function mce_external_plugins( $plugins ) {
-		$plugins['eytg'] = plugin_dir_url( EYTG_FILE ) . 'inc/tinymce/plugin.min.js';
+		$plugins['eytg'] = plugin_dir_url( EYTG_FILE ) . 'assets/js/tinymce/plugin.min.js';
 		return $plugins;
 	} // END function mce_external_plugins
 
