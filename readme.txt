@@ -143,11 +143,14 @@ Initial release
 
 == ChangeLog ==
 
-= 1.0.5 (2025-01-15) =
+= 1.0.5 (2025-01-16) =
 
 * Test on WordPress 6.7.1 and PHP 8.3.13
-* Refactor code
+* Test on WordPress 3.9.40, Twenty Twelve 1.4 and PHP 5.4.45
 * Fixed XSS vulneability reported on patchstack by muhammad yudha researcher
+* Refactor code
+* Optimize play image
+* Removed deprecated embed parameter modestbranding https://developers.google.com/youtube/player_parameters#release_notes_08_15_2023
 
 = 1.0.4 (2017-01-20) =
 
