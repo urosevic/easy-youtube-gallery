@@ -15,15 +15,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Main {
 
 	private $defaults = array(
-		'id'          => '',          // Single or array of YouTube video ID's
-		'cols'        => 1,           // Number of columns (1-8)
+		'id'          => '',          // Single or array of YouTube Video ID's
 		'ar'          => '16_9',      // empty for 16:9 or or `4_3` or `square`
 		'thumbnail'   => 'hqdefault', // available: 0, 1, 2, 3, default, mqdefault, hqdefault, sddefault, and maxresdefault
 		'controls'    => 1,           // Optionally hide player controls
-		'class'       => '',          // Custom block class
 		'privacy'     => 0,           // Enhanced Privacy
 		'playsinline' => 0,           // When disabled video on iOS play in fullscreen, when eabled plays inline
+		'cols'        => 1,           // Number of columns (1-8)
 		'wall'        => 0,           // Enable wall mode (instead lightbox)
+		'class'       => '',          // Custom block class
 		'title'       => 'top',       // Position of custom video title (top|bottom)
 	);
 
@@ -31,7 +31,6 @@ class Main {
 	 * Construct class
 	 */
 	public function __construct() {
-
 		// Register shortcodes `youtube_channel` and `ytc`
 		add_shortcode( 'easy_youtube_gallery', array( $this, 'shortcode' ) );
 		add_shortcode( 'eytg', array( $this, 'shortcode' ) );
@@ -69,7 +68,6 @@ class Main {
 	 * Enqueue frontend scripts and styles
 	 */
 	public function enqueue_scripts() {
-
 		// Do we have enqueued Magnific Popup?
 		if ( ! wp_script_is( 'magnific-popup-au', 'enqueued' ) ) {
 			wp_enqueue_style(
@@ -107,24 +105,39 @@ class Main {
 
 	/**
 	 * Build Easy YouTube Gallery HTML structure based on provided shortcode options
-	 * @param  array $atts    Custom selection of parameters
-	 * @return text           Prepared HTML structure
+	 * @param  array $atts Custom selection of parameters
+	 * @return text        Prepared HTML structure
 	 */
 	public function shortcode( $atts = array(), $content = null, $tag = '' ) {
 		// Normalize attribute keys, lowercase
 		$atts = array_change_key_case( (array) $atts, CASE_LOWER );
 
-		// Merge shortcode attributes and defaults
+		/**
+		 * Combined user attributes from shortcode and default attribute values.
+		 *
+		 * @var array $eytg_atts This parameter contains array of attributes defined by user in shortcode merged to default attribute values.
+		 */
 		$eytg_atts = shortcode_atts(
 			$this->defaults,
 			$atts,
 			$tag
 		);
 
-		// Make array of video ID's and prepare other var's
-		$eytg_ids  = $this->video_ids_to_array( $eytg_atts['id'] );
+		/**
+		 * Array of sanitized YouTube Video ID's.
+		 *
+		 * @var array $eytg_ids This parameter contains array of sanitized YouTube Video IDs.
+		 */
+		$eytg_ids = $this->video_ids_to_array( $eytg_atts['id'] );
+
+		/**
+		 * Number of Video ID's.
+		 *
+		 * @var integer $total_ids This parameter indicates total number of YouTube Video ID's.
+		 */
 		$total_ids = count( $eytg_ids );
-		// Complain if we don't have provided ID's
+
+		// Print on frontend info about missing Video ID's to logged in user with managing posts permissions.
 		if ( ! $total_ids && is_user_logged_in() && current_user_can( 'publish_posts' ) ) {
 			return sprintf(
 				'<p class="eytg-error">%s</p>',
@@ -132,57 +145,121 @@ class Main {
 			);
 		}
 
-		// Define number of columns
+		/**
+		 * Number of columns in the gallery.
+		 *
+		 * @var integer $columns This parameter indicates number of columns in the video gallery. Supported range is 1-8.
+		 */
 		$columns = max( 1, min( 8, (int) $eytg_atts['cols'] ) );
 
-		// Define Aspect Ratio
+		/**
+		 * Video Aspect Ratio.
+		 *
+		 * @var string $aspect_ratio This parameter indicates aspect ratio of the video thumbnail. Supported values are:
+		 * - square: Represent aspect ratio 1:1
+		 * - 4_3: Represent aspect ratio 4:3
+		 * - 16_9: (default) Represent aspect ratio 16:9
+		 */
 		$aspect_ratio = in_array( sanitize_key( $eytg_atts['ar'] ), array( '4_3', 'square', '16_9' ), true )
 		? sanitize_key( $eytg_atts['ar'] )
 		: $this->defaults['ar'];
 
-		// Define thumbnail size
+		/**
+		 * Thumbnail size.
+		 *
+		 * @var string $thumbnail_size This parameter indicates YouTube thumbnail size. Supported values are:
+		 * - 0: 480x260px
+		 * - 1, 2, 3: 2nd, 3rd and 4th thumbnail in resolution 120x90
+		 * - default: 120x90px
+		 * - mqdefault: 320x180px
+		 * - hqdefault: 480x360px
+		 * - sddefault: 640x480px
+		 * - maxresdefault: Unscaled thumbnail resolution
+		 */
 		$thumbnail_size = in_array( sanitize_key( $eytg_atts['thumbnail'] ), array( '0', '1', '2', '3', 'default', 'mqdefault', 'hqdefault', 'sddefault', 'maxresdefault' ), true )
 		? $this->defaults['thumbnail']
 		: sanitize_key( $eytg_atts['thumbnail'] );
 
-		// Define controls
-		$controls = (bool) $eytg_atts['controls'] ? '1' : '0';
-
-		// Define class
+		/**
+		 * HTML class for thumbnails gallery container.
+		 *
+		 * @var string $html_class This parameter indicates valid custom HTML class composed of uppercase and lowercase letters, digits, underscore and dash.
+		 */
 		$html_class = sanitize_html_class( $eytg_atts['class'], $this->defaults['class'] );
 
-		// Define Enhanced Privacy
-		$enhance_privacy = (bool) $eytg_atts['privacy'] ? '1' : '0';
+		/**
+		 * Wall mode.
+		 *
+		 * @var bool $wall_mode This parameter indicates what player is triggered by thumbnails click. Supported values are:
+		 * - true: Render a big video player at the top and load videos to play in it.
+		 * - false: (default) Open and play video in lightbox.
+		 */
+		$wall_mode = (bool) $eytg_atts['wall'] ? true : false;
 
-		// Deifine Plays Inline on iOS (is this deprecated?)
-		$playsinline = (bool) $eytg_atts['playsinline'] ? '1' : '0';
-
-		// Deifine Wall mode
-		$wall_mode = (bool) $eytg_atts['wall'] ? '1' : '0';
-
-		// Define title position
+		/**
+		 * Custom title position.
+		 *
+		 * @var string $title_position This parameter indicates where is positioned custom thumbnail title. Supported values are:
+		 * - top: Display thumbnail title at the top of the thumbnail.
+		 * - bottom: Display thumbnail title at the bottom of the thumbnail.
+		 */
 		$title_position = in_array( sanitize_key( $eytg_atts['title'] ), array( 'top', 'bottom' ), true )
 		? $this->defaults['title']
 		: sanitize_key( $eytg_atts['title'] );
 
-		// Prepare titles if available
+		/**
+		 * YouTube Embed feature `Enhanced Privacy`.
+		 *
+		 * @var string $enhance_privacy This parameter indicates state of the Privacy Enhanced Mode of the YouTube embedded player. Valid values are:
+		 * - 0: (default) Embeded video player is loaded from https://www.youtube.com
+		 * - 1: Embeded video player is loaded from https://www.youtube-nocookie.com and prevent embedded YouTube content from influencing the viewer's browsing experience on YouTube
+		 */
+		$enhance_privacy = (bool) $eytg_atts['privacy'] ? '1' : '0';
+
+		/**
+		 * YouTube Embed feature `controls`.
+		 *
+		 * @var string $controls This parameter indicates whether the video player controls are displayed:
+		 * - 0: Player controls do not display in the player.
+		 * - 1: (default) Player controls display in the player.
+		 */
+		$controls = (bool) $eytg_atts['controls'] ? '1' : '0';
+
+		/**
+		 * YouTube Embed feature `Plays Inline` on iOS.
+		 *
+		 * @var string $playsinline This parameter controls whether videos play inline or fullscreen on iOS. Valid values are:
+		 * - 0: (default) Results in fullscreen playback. This is currently the default value, though the default is subject to change.
+		 * - 1: Results in inline playback for mobile browsers and for WebViews created with the allowsInlineMediaPlayback property set to YES.
+		 */
+		$playsinline = (bool) $eytg_atts['playsinline'] ? '1' : '0';
+
+		// Prepare custom thumbnail titles, if available.
 		if ( ! empty( $content ) ) {
-			// Convert pipes to newlines and strip BR's
-			$titles = preg_replace( '/<br\s*\/?>/', '', trim( str_replace( '|', PHP_EOL, $content ) ) );
-			// Explode string to array
-			$titles = explode( "\n", trim( $titles ) );
+			// Remove all HTML tags and special characters, then trim to remove 1st newline.
+			$content = trim( strip_tags( $content ) );
+			// Convert special characters to HTML entities to prevent XSS.
+			$content = htmlspecialchars( $content, ENT_QUOTES | ENT_HTML5, 'UTF-8' );
+			// Convert pipes to newlines.
+			$content = str_replace( '|', PHP_EOL, $content );
+
+			/**
+			 * Custom thumbnail titles array.
+			 *
+			 * @var array $titles This parameter contains array of sanitized strings representing custom title for video thumbnails.
+			 */
+			$titles = explode( "\n", $content );
 		}
 
-		// Now enqueue plugin JS as we need it
-		if ( ! wp_script_is( 'easy-youtube-gallery', 'enqueued' ) ) {
-			wp_enqueue_script( 'easy-youtube-gallery' );
-		}
-
-		// Start output
+		/**
+		 * HTML structure for output.
+		 *
+		 * @var string $output This parameter contains complete HTML structure of the rendered shortcode.
+		 */
 		$output  = '';
 		$output .= '<section class="eytg_main_container">';
 
-		if ( '1' === $wall_mode ) {
+		if ( true === $wall_mode ) {
 			$html_class .= ' eytg-wall-items';
 			$output     .= sprintf(
 				'<section class="eytg-wall">
@@ -193,7 +270,7 @@ class Main {
 				</section>',
 				! $enhance_privacy ? '' : '-nocookie', // 1
 				$eytg_ids[0],                          // 2
-				$this->build_video_query( 1, $controls, $enhance_privacy, 0, $playsinline, 0 ) // 3
+				$this->build_video_query( 1, $controls, $enhance_privacy, $playsinline, 0 ) // 3
 			);
 		} else {
 			$html_class .= ' eytg-lightbox-items';
@@ -207,21 +284,43 @@ class Main {
 			$html_class    // 3
 		);
 
-		// Build gallery items
+		/**
+		 * Gallery items iterator.
+		 *
+		 * @var integer $item_num This parameter indicates current video item position.
+		 */
 		$item_num = 0;
 
-		// Process each sanitized and cleaned video id
+		/**
+		 * Iterate through a list of YouTube Video ID's and process each one.
+		 *
+		 * @var string[] $eytg_ids An array of YouTube Video IDs.
+		 * @var string   $video_id The current YouTube Video ID from the $eytg_ids array.
+		 */
 		foreach ( $eytg_ids as $video_id ) {
 
 			// Increase number of items
 			++$item_num;
 
-			$active_item = '';
+			/**
+			 * Active thumbnail indicator.
+			 *
+			 * @var string $item_active This parameter indicates if current thumbnail represent currently played video.
+			 */
+			$item_active = '';
+
+			/**
+			 * Position of the item in gallery.
+			 *
+			 * @var string $item_position This parameter indicates if current item is first, middle or last in the gallery.
+			 */
+			$item_position = '';
+
 			switch ( $item_num ) {
 				case 1:
 					$item_position = 'first';
-					if ( '1' === $wall_mode ) {
-						$active_item = 'active';
+					if ( true === $wall_mode ) {
+						$item_active = 'active';
 					}
 					break;
 				case $total_ids:
@@ -231,15 +330,19 @@ class Main {
 					$item_position = 'mid';
 			}
 
-			// Do we have custom title for this item?
+			/**
+			 * Current item custom thumbnail title.
+			 *
+			 * @var string $item_title This parameter indicates current thumbnail custom title.
+			 */
 			$item_title = '';
 			if ( ! empty( $titles ) ) {
 				$tnum = $item_num - 1;
 				if ( is_array( $titles ) && ! empty( $titles[ $tnum ] ) ) {
 					$item_title = sprintf(
 						'<span class="eytg-title %1$s">%2$s</span>',
-						$title_position,         // 1
-						trim( $titles[ $tnum ] ) // 2
+						$title_position,                     // 1
+						esc_html( trim( $titles[ $tnum ] ) ) // 2
 					);
 				}
 			}
@@ -253,7 +356,7 @@ class Main {
 					data-eytg_playsinline="%3$s"
 					data-eytg_privacy="%4$s">
 					<span class="eytg-thumbnail"
-						style="background-image:url(https://img.youtube.com/vi/%1$s/%8$s.jpg)"></span>
+						style="background-image: url(https://img.youtube.com/vi/%1$s/%8$s.jpg)"></span>
 					%9$s
 				</a>',
 				$video_id,        // 1
@@ -262,10 +365,10 @@ class Main {
 				$enhance_privacy, // 4
 				$item_num,        // 5
 				$item_position,   // 6
-				$active_item,     // 7
+				$item_active,     // 7
 				$thumbnail_size,  // 8
 				$item_title,      // 9
-				$this->build_video_query( 1, $controls, $enhance_privacy, 1, $playsinline, 0 ) // 10
+				$this->build_video_query( 1, $controls, $enhance_privacy, $playsinline, 0 ) // 10
 			);
 
 		} // END foreach
@@ -278,53 +381,34 @@ class Main {
 			$html_class    // 3
 		);
 
+		// Now enqueue plugin JS as we need it
+		if ( ! wp_script_is( 'easy-youtube-gallery', 'enqueued' ) ) {
+			wp_enqueue_script( 'easy-youtube-gallery' );
+		}
+
 		// Return prepared HTML structure
-		return wp_kses(
-			$output,
-			array_merge(
-				wp_kses_allowed_html( 'post' ),
-				// Allow iframe and EYTG specific attributes
-				array(
-					'a'      => array(
-						'href'                  => array(),
-						'class'                 => array(),
-						'data-eytg_video_id'    => array(),
-						'data-eytg_controls'    => array(),
-						'data-eytg_playsinline' => array(),
-						'data-eytg_privacy'     => array(),
-					),
-					'iframe' => array(
-						'src'             => array(),
-						'width'           => array(),
-						'height'          => array(),
-						'frameborder'     => array(),
-						'allowfullscreen' => array(),
-						'sandbox'         => array(),
-						'title'           => array(),
-					),
-				)
-			)
-		);
+		return $output;
 	} // END public function shortcode
 
 	/**
 	 * Sanitize and validate YouTube video IDs separated by commas.
 	 *
-	 * @param string $video_ids Comma-separated YouTube video IDs.
-	 * @return array Array of sanitized and validated video IDs
+	 * @param string $video_ids Comma-separated YouTube Video IDs.
+	 * @return array Array of sanitized YouTube Video IDs
 	 */
 	public function video_ids_to_array( $video_ids ) {
 		// Split the input string into an array of IDs
 		$ids = explode( ',', $video_ids );
 
-		// Define a regular expression for valid YouTube video IDs
-		$pattern = '/^[a-zA-Z0-9_-]{11}$/';
+		// Valid YouTube Video ID ha 11 characters:
+		// lowercase and uppercase letters, digits, underscore and dash
+		$allowed_characters_pattern = '/^[a-zA-Z0-9_-]{11}$/';
 
 		// Sanitize and validate each ID
 		$sanitized_ids = array();
 		foreach ( $ids as $id ) {
 			$id = trim( $id ); // Remove extra spaces
-			if ( preg_match( $pattern, $id ) ) {
+			if ( preg_match( $allowed_characters_pattern, $id ) ) {
 				$sanitized_ids[] = $id;
 			}
 		}
@@ -338,7 +422,6 @@ class Main {
 	 * @param string $autoplay
 	 * @param string $controls
 	 * @param string $enhanceprivacy
-	 * @param string $modestbranding
 	 * @param string $playsinline
 	 * @param string $rel
 	 * @return string URL query parameters
@@ -347,7 +430,6 @@ class Main {
 		$autoplay = '0',
 		$controls = '0',
 		$enhanceprivacy = '0',
-		$modestbranding = '0',
 		$playsinline = '0',
 		$rel = '0'
 	) {
@@ -356,7 +438,6 @@ class Main {
 				'autoplay'       => $autoplay,
 				'controls'       => $controls,
 				'enhanceprivacy' => $enhanceprivacy,
-				'modestbranding' => $modestbranding,
 				'playsinline'    => $playsinline,
 				'rel'            => $rel,
 			)
@@ -383,4 +464,4 @@ class Main {
 		$buttons[] = 'eytg_shortcode';
 		return $buttons;
 	} // END function mce_buttons
-} // END class WPAU_EASY_YOUTUBE_GALLERY
+} // END class Main

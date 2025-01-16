@@ -26,6 +26,6 @@ jQuery(document).ready(function($){
 			privacy = '-nocookie';
 		}
 		$(this).addClass('active').siblings().removeClass('active');
-		$(this).parent().siblings('.eytg-wall').html( '<iframe width="560" height="315" src="https://www.youtube' + privacy + '.com/embed/' + video_id + '?rel=0&modestbranding=0&autoplay=1&controls=' + controls + '&playsinline=' + playsinline + '" frameborder="0" allowfullscreen></iframe>' );
+		$(this).parent().siblings('.eytg-wall').html( '<iframe width="560" height="315" src="https://www.youtube' + privacy + '.com/embed/' + video_id + '?rel=0&autoplay=1&controls=' + controls + '&playsinline=' + playsinline + '" frameborder="0" allowfullscreen></iframe>' );
 	});
 });
