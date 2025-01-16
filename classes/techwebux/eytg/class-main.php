@@ -56,7 +56,7 @@ class Main {
 		if ( in_array( $pagenow, array( 'post-new.php', 'post.php' ), true ) ) {
 			wp_register_style(
 				'easy-youtube-gallery-admin',
-				plugins_url( 'assets/css/admin.css', EYTG_FILE ),
+				plugins_url( 'assets/css/admin.min.css', EYTG_FILE ),
 				array(),
 				EYTG_VER
 			);
@@ -95,7 +95,7 @@ class Main {
 		);
 		wp_register_style(
 			'easy-youtube-gallery',
-			plugins_url( 'assets/css/eytg.css', EYTG_FILE ),
+			plugins_url( 'assets/css/eytg.min.css', EYTG_FILE ),
 			array(),
 			EYTG_VER
 		);
