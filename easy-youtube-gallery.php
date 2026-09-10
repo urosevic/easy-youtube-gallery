@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Easy YouTube Gallery
- * Plugin URI: https://urosevic.net/wordpress/plugins/easy-youtube-gallery/
+ * Plugin URI: https://devyard.urosevic.net/plugins/easy-youtube-gallery/
  * Description: Quick and easy embed thumbnails gallery for custom set of YouTube videos provided in shortcode, and autoplay video on click in Magnific PopUp lightbox.
  * Author: Aleksandar Urošević
  * Version: 1.0.5
